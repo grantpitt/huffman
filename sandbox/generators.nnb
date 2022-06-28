@@ -1,0 +1,70 @@
+{
+    "cells": [
+        {
+            "language": "typescript",
+            "source": [
+                "// Defining the symbol iterator method on an object makes it iterable.\nconst foo = {\n  *[Symbol.iterator]() {\n    yield 1;\n    yield 2;\n  }\n}\n\nconsole.log([...foo]);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[ 1, 2 ]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function* loggerator() {\n  console.log(\"running...\");\n  yield \"paused\";\n  console.log(\"running again...\");\n  return \"stopped\";\n}\n\nlet logger = loggerator();\nconsole.log(logger.next());\nconsole.log(logger.next());"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "running...",
+                                "{ value: 'paused', done: false }",
+                                "running again...",
+                                "{ value: 'stopped', done: true }",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// You can also use yield* to iterate over another iterator.\nfunction* generatorator() {\n  yield 1;\n  yield 2;\n  yield* loggerator();\n  yield 3;\n}\n\nlet generator = generatorator();\nconsole.log(generator.next());\nconsole.log(generator.next());\nconsole.log(generator.next());\nconsole.log(generator.next());\nconsole.log(generator.next());"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ value: 1, done: false }",
+                                "{ value: 2, done: false }",
+                                "running...",
+                                "{ value: 'paused', done: false }",
+                                "running again...",
+                                "{ value: 3, done: false }",
+                                "{ value: undefined, done: true }",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
