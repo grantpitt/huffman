@@ -3,25 +3,12 @@
   import { getHuffmanTree } from "./utils/huffman";
 
   let source = "For my part I know nothing with any certainty, but the sight of the stars makes me dream. -Vincent van Gogh";
-  // let source = "eeefe";
 
   $: tree = getHuffmanTree(source);
-  // console.log(getHuffmanTree(source));
-
-  let output = {
-    value: "e",
-    zero: {
-      value: "0"
-    },
-    one: {
-      value: "1"
-    },
-  }
-
 </script>
 
 
-<textarea name="" id="" rows="10" bind:value={source}></textarea>
+<textarea name="" id="" rows="8" bind:value={source}></textarea>
 <section>
   <Node node={tree} />
 </section>
@@ -31,7 +18,10 @@
     width: 100%;
     max-width: 500px;
   }
-  /* section {
+  section {
     font-size: 20px;
-  } */
+  }
+  section, textarea {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  }
 </style>

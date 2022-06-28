@@ -10,37 +10,16 @@ function getNodeFrequencies(arr: string[]): Node[] {
     new Map()
   );
   return [...frequencies].map(([key, value]) => ({
-    // const node = {
     value: key,
     occurrences: value,
     [Symbol.iterator]: function* depthFirst() {
       yield this.value;
     },
   }));
-  // }
-  // return node;
 }
-
-// let output = {
-//   occurance: 3,
-//   zero: {
-//     occurance: 2,
-//     value: "0"
-//   },
-//   one: {
-//     occurance: 1,
-//     value: "1"
-//   },
-// }
 
 // FIXME: combine our two Node interfaces, export type from this file
 // FIXME: don't crame everything into node, extend things / make new interfaces
-// interface Node {
-//   value?: string;
-//   occurrences: number;
-//   zero?: Node;
-//   one?: Node;
-// }
 
 // This all feels sort of not great
 interface BaseNode {

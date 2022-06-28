@@ -26,14 +26,18 @@
 
   }
 
-
-
   // $: zeroCount = "one" in node ? treeValues(node.zero) : 0;
   let zeroCount = 0;
 </script>
 
 <kbd class={"value" in node ? "leaf" : "branch"} style:--zeroCount={zeroCount}>
-  {"value" in node ? `--- "${node.value}"` : "---"}
+
+  <div class="shoot"></div>
+  {#if "value" in node}
+    <div class="value">
+      "{node.value}"
+    </div>
+  {/if}
 </kbd>
 
 {#if "zero" in node}
@@ -49,15 +53,22 @@
 
 <style>
   kbd {
-    display: block;
-    /* padding: 0 0 0 0.25em; */
-    /* margin: 1em 0; */
-    font-family: monospace;
+    display: inline-flex;
+    font: inherit;
     /* transform: translateX(50%); */
   }
 
+  .shoot {
+    border-top: 2px dashed black;
+    width: 30px;
+    margin-top: 0.5em;
+  }
+
+  .value {
+    margin-left: 0.5em;
+  }
+
   .leaf {
-    /* color: #00f; */
     padding: 1em 0;
   }
 
@@ -73,10 +84,8 @@
     /* transform: translateX(-50%); */
     height: fit-content;
     padding: 0;
-    /* padding: 0; */
-    margin: -0.5em 0 0 1.5em;
+    margin: -0.25em 0 0 1.5em;
     list-style: none;
-    /* border-top: 1px solid #eee; */
     border-left: 2px dashed #222;
   }
 
